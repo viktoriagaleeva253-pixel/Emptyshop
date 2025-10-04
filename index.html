@@ -49,13 +49,12 @@ h2,h3{color:var(--neon-magenta);font-weight:700;margin-bottom:12px;border-bottom
 .neon-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;}
 .neon-bg img{position:absolute;opacity:0.6;animation: floatMove var(--dur) linear infinite alternate;filter: drop-shadow(0 0 4px rgba(0,212,255,0.5));width:var(--size);height:auto;}
 @keyframes floatMove {0%{transform:translateY(0px);}100%{transform:translateY(-20px);}}
-.confetti-piece{position:absolute;width:6px;height:6px;border-radius:50%;pointer-events:none;animation:confettiFall 1s ease forwards;}
-@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);}100%{transform:translateY(80px) rotate(360deg);opacity:0;}}
 .fly-thumb{position:absolute;width:40px;height:30px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#021018;z-index:9999;pointer-events:none;transition: transform 0.8s cubic-bezier(0.4,0,0.2,1), opacity 0.8s;opacity:1;}
 </style>
 </head>
 <body>
 
+<!-- Фон с алмазами и персонажами -->
 <div class="neon-bg">
   <img src="diamond.png" style="--size:30px;--dur:12s;left:10%;top:20%;" onerror="this.style.display='none'">
   <img src="diamond.png" style="--size:25px;--dur:15s;left:70%;top:40%;" onerror="this.style.display='none'">
@@ -63,33 +62,40 @@ h2,h3{color:var(--neon-magenta);font-weight:700;margin-bottom:12px;border-bottom
   <img src="char2.png" style="--size:100px;--dur:25s;left:80%;top:30%;" onerror="this.style.display='none'">
 </div>
 
+<!-- Шапка с названием магазина -->
+<header class="shop-header" style="text-align:center; margin-bottom:20px;">
+  <img src="shop-banner.png" alt="EmptyShop" style="width:100%; max-height:200px; object-fit:cover; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.6);">
+  <h1 style="margin-top:10px;">EmptyShop 💎</h1>
+</header>
+
 <div class="container">
-<h1>EmptyShop 💎</h1>
-<div class="id-row">
-<input id="playerId" placeholder="Введите ваш ID / ник (обязательно)">
-<input id="nickname" placeholder="Ник в Telegram (необязательно)">
-</div>
+  <div class="id-row">
+    <input id="playerId" placeholder="Введите ваш ID / ник (обязательно)">
+    <input id="nickname" placeholder="Ник в Telegram (необязательно)">
+  </div>
 
-<div class="card"><h2>Алмазы</h2><div class="grid" id="diamonds"></div></div>
-<div class="card"><h2>Ваучеры</h2><div class="grid" id="vouchers"></div></div>
-<div class="card passes" id="passes"><h2>Пропуск прокачки</h2></div>
+  <div class="card"><h2>Алмазы</h2><div class="grid" id="diamonds"></div></div>
+  <div class="card"><h2>Ваучеры</h2><div class="grid" id="vouchers"></div></div>
+  <div class="card passes" id="passes"><h2>Пропуск прокачки</h2></div>
 
-<div class="card cart">
-<h3>Корзина</h3>
-<div class="cart-list" id="cartList"><div>Корзина пуста</div></div>
-<div class="total"><div>Итого:</div><div id="totalSum">0 ₽</div></div>
-<div class="checkout">
-<button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
-</div>
-</div>
+  <div class="card cart">
+    <h3>Корзина</h3>
+    <div class="cart-list" id="cartList"><div>Корзина пуста</div></div>
+    <div class="total"><div>Итого:</div><div id="totalSum">0 ₽</div></div>
+    <div class="checkout">
+      <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
+    </div>
+  </div>
 </div>
 
 <script>
 const TELEGRAM='SilviaEmpShop';
 const catalog={
-p1:{name:'105 алмазов',price:75},p2:{name:'326 алмазов',price:215},p3:{name:'546 алмазов',price:355},p4:{name:'1113 алмазов',price:705},p5:{name:'2398 алмазов',price:1415},p6:{name:'6160 алмазов',price:3505},
-v1:{name:'Недельный ваучер',price:130},v2:{name:'Месячный ваучер',price:670},
-pass6:{name:'Пропуск 6 lvl',price:40},pass10:{name:'Пропуск 10 lvl',price:60},pass15:{name:'Пропуск 15 lvl',price:60},pass20:{name:'Пропуск 20 lvl',price:60},pass25:{name:'Пропуск 25 lvl',price:60},pass30:{name:'Пропуск 30 lvl',price:85}
+  p1:{name:'105 алмазов',price:75},p2:{name:'326 алмазов',price:215},p3:{name:'546 алмазов',price:355},
+  p4:{name:'1113 алмазов',price:705},p5:{name:'2398 алмазов',price:1415},p6:{name:'6160 алмазов',price:3505},
+  v1:{name:'Недельный ваучер',price:130},v2:{name:'Месячный ваучер',price:670},
+  pass6:{name:'Пропуск 6 lvl',price:40},pass10:{name:'Пропуск 10 lvl',price:60},pass15:{name:'Пропуск 15 lvl',price:60},
+  pass20:{name:'Пропуск 20 lvl',price:60},pass25:{name:'Пропуск 25 lvl',price:60},pass30:{name:'Пропуск 30 lvl',price:85}
 };
 let cart={};
 
@@ -99,25 +105,29 @@ function renderSection(type){
   for(const k in catalog){
     if(type==='diamonds' && k[0]!=='p') continue;
     if(type==='vouchers' && k[0]!=='v') continue;
-    const it=catalog[k];
-    const div=document.createElement('div');
-    div.className='product';
-    div.innerHTML=`<div class="thumb">${(it.name.match(/\d+/)||['•'])[0]}</div>
-    <div class="prod-info"><h4>${it.name}</h4></div>
-    <div class="price">${it.price} ₽</div>
-    <div class="qty-box">
-      <button onclick="changeQty('${k}',-1)">−</button>
-      <span id="qty-${k}">0</span>
-      <button onclick="changeQty('${k}',1)">+</button>
-    </div>
-    <button class="add-btn" onclick="addToCart('${k}',this)">Добавить</button>`;
-    container.appendChild(div);
+    if(type==='diamonds'||type==='vouchers'){
+      const it=catalog[k];
+      const div=document.createElement('div');
+      div.className='product';
+      div.innerHTML=`<div class="thumb">${(it.name.match(/\d+/)||['•'])[0]}</div>
+      <div class="prod-info"><h4>${it.name}</h4></div>
+      <div class="price">${it.price} ₽</div>
+      <div class="qty-box">
+        <button onclick="changeQty('${k}',-1)">−</button>
+        <span id="qty-${k}">0</span>
+        <button onclick="changeQty('${k}',1)">+</button>
+      </div>
+      <button class="add-btn" onclick="addToCart('${k}',this)">Добавить</button>`;
+      container.appendChild(div);
+    }
   }
 }
+
 function renderPasses(){
   const container=document.getElementById('passes');
   container.innerHTML='';
-  ['pass6','pass10','pass15','pass20','pass25','pass30'].forEach(k=>{
+  const passKeys=['pass6','pass10','pass15','pass20','pass25','pass30'];
+  passKeys.forEach(k=>{
     const it=catalog[k];
     const row=document.createElement('div');
     row.className='pass-row';
@@ -126,6 +136,7 @@ function renderPasses(){
     container.appendChild(row);
   });
 }
+
 function flyToCart(btn){
   const thumb=btn.parentElement.querySelector('.thumb');
   if(!thumb) return;
@@ -149,6 +160,7 @@ function addToCart(id,btn){
   flyToCart(btn);
   renderCart();
 }
+
 function changeQty(id,val){
   if(!cart[id]) cart[id]={...catalog[id],qty:0};
   cart[id].qty=Math.max(0,cart[id].qty+val);
@@ -156,6 +168,7 @@ function changeQty(id,val){
   if(cart[id].qty===0) delete cart[id];
   renderCart();
 }
+
 function renderCart(){
   const list=document.getElementById('cartList');
   const totalEl=document.getElementById('totalSum');
@@ -175,6 +188,7 @@ function renderCart(){
   totalEl.textContent=Math.round(total)+' ₽';
   document.getElementById('payBtn').disabled=false;
 }
+
 function goToTelegram(){
   const playerId=document.getElementById('playerId').value.trim();
   const nickname=document.getElementById('nickname').value.trim();
@@ -189,7 +203,10 @@ function goToTelegram(){
   const url=`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
 }
-renderSection('diamonds');renderSection('vouchers');renderPasses();
+
+renderSection('diamonds');
+renderSection('vouchers');
+renderPasses();
 </script>
 </body>
 </html>
