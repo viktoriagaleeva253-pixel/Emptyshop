@@ -19,7 +19,7 @@ h1{color:var(--neon-cyan);text-align:center;text-shadow:0 0 12px rgba(0,212,255,
 .id-row{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0;}
 .id-row input{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);
 background:rgba(255,255,255,0.02);color:#fff;min-width:220px;font-weight:700;}
-.card{background:var(--card);padding:18px;border-radius:12px;margin-bottom:25px;box-shadow:0 4px 20px rgba(0,0,0,0.6);}
+.card{background:var(--card);padding:18px;border-radius:12px;margin-bottom:30px;box-shadow:0 4px 20px rgba(0,0,0,0.6);}
 h2,h3{color:var(--neon-magenta);font-weight:700;margin-bottom:12px;border-bottom:1px dashed rgba(255,255,255,0.1);padding-bottom:6px;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
 @media(max-width:700px){.grid{grid-template-columns:1fr;}}
@@ -37,14 +37,15 @@ h2,h3{color:var(--neon-magenta);font-weight:700;margin-bottom:12px;border-bottom
 .qty-box span{min-width:20px;text-align:center;font-weight:700;transition: transform 0.2s ease;}
 .qty-box span.update{animation: counterPulse 0.4s ease;}
 @keyframes counterPulse{0%{transform:scale(1);color:#fff;}50%{transform:scale(1.3);color:#00d4ff;}100%{transform:scale(1);color:#fff;}}
-.add-btn:active, .qty-box button:active { animation: clickPulse 0.4s ease-out; }
-@keyframes clickPulse {0%{transform:scale(1);box-shadow:0 0 14px rgba(0,212,255,0.4),0 0 28px rgba(255,54,214,0.25);}50%{transform:scale(1.1);box-shadow:0 0 25px rgba(0,212,255,0.7),0 0 40px rgba(255,54,214,0.5);}100%{transform:scale(1);box-shadow:0 0 14px rgba(0,212,255,0.4),0 0 28px rgba(255,54,214,0.25);}}
 .cart-list{min-height:60px;margin-top:8px;}
 .cart-item{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);font-weight:700;}
 .total{display:flex;justify-content:space-between;margin-top:10px;font-weight:900;}
 .checkout{margin-top:12px;}
 .pay{flex:1;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));font-weight:900;color:#021018;cursor:pointer;}
 .pay:disabled{opacity:0.5;cursor:default;}
+.passes{display:flex;flex-direction:column;gap:14px;margin-top:10px;}
+.pass-row{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(255,255,255,0.01);border-radius:8px;font-weight:700;}
+.pass-row button{margin-left:auto;padding:8px 16px;}
 .neon-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;}
 .neon-bg img{position:absolute;opacity:0.6;animation: floatMove var(--dur) linear infinite alternate;filter: drop-shadow(0 0 4px rgba(0,212,255,0.5));width:var(--size);height:auto;}
 @keyframes floatMove {0%{transform:translateY(0px);}100%{transform:translateY(-20px);}}
@@ -54,11 +55,12 @@ h2,h3{color:var(--neon-magenta);font-weight:700;margin-bottom:12px;border-bottom
 </style>
 </head>
 <body>
+
 <div class="neon-bg">
-  <img src="diamond.png" style="--x:10%;--y:20%;--size:30px;--dur:12s;left:10%;top:20%;">
-  <img src="diamond.png" style="--x:70%;--y:40%;--size:25px;--dur:15s;left:70%;top:40%;">
-  <img src="char1.png" style="--x:20%;--y:60%;--size:80px;--dur:20s;left:20%;top:60%;">
-  <img src="char2.png" style="--x:80%;--y:30%;--size:100px;--dur:25s;left:80%;top:30%;">
+  <img src="diamond.png" style="--size:30px;--dur:12s;left:10%;top:20%;" onerror="this.style.display='none'">
+  <img src="diamond.png" style="--size:25px;--dur:15s;left:70%;top:40%;" onerror="this.style.display='none'">
+  <img src="char1.png" style="--size:80px;--dur:20s;left:20%;top:60%;" onerror="this.style.display='none'">
+  <img src="char2.png" style="--size:100px;--dur:25s;left:80%;top:30%;" onerror="this.style.display='none'">
 </div>
 
 <div class="container">
@@ -127,48 +129,30 @@ function renderPasses(){
 function flyToCart(btn){
   const thumb=btn.parentElement.querySelector('.thumb');
   if(!thumb) return;
-  const fly=thumb.cloneNode(true);
+  const fly=document.createElement('div');
   fly.className='fly-thumb';
+  fly.textContent=thumb.textContent;
   document.body.appendChild(fly);
   const rect=thumb.getBoundingClientRect();
   fly.style.left=rect.left+'px';
   fly.style.top=rect.top+'px';
-  const cartRect=document.querySelector('.cart').getBoundingClientRect();
-  requestAnimationFrame(()=>{
-    fly.style.left=(cartRect.left+cartRect.width-50)+'px';
-    fly.style.top=(cartRect.top+20)+'px';
-    fly.style.opacity=0;
-    fly.style.transform='scale(0.3)';
-  });
+  const cartRect=document.getElementById('cartList').getBoundingClientRect();
+  requestAnimationFrame(()=>{fly.style.transform=`translate(${cartRect.left-rect.left}px,${cartRect.top-rect.top}px)`;fly.style.opacity='0';});
   setTimeout(()=>fly.remove(),800);
 }
+
 function addToCart(id,btn){
   cart[id]=cart[id]||{...catalog[id],qty:0};
   cart[id].qty++;
-  document.getElementById('qty-'+id)?.classList.add('update');
-  setTimeout(()=>document.getElementById('qty-'+id)?.classList.remove('update'),400);
-  renderCart();
-  const thumb=btn.parentElement.querySelector('.thumb');
-  if(thumb){thumb.classList.add('bounce'); setTimeout(()=>thumb.classList.remove('bounce'),400);}
-  btn.classList.add('added'); btn.textContent='Добавлено';
-  setTimeout(()=>{btn.classList.remove('added');btn.textContent='Добавить';},1000);
+  document.getElementById(`qty-${id}`).textContent=cart[id].qty;
+  if(btn) btn.classList.add('added');
   flyToCart(btn);
-
-  if(Object.values(cart).reduce((a,c)=>a+c.qty,0)>=5){
-    for(let i=0;i<10;i++){
-      const c=document.createElement('div');
-      c.className='confetti-piece';
-      c.style.left=Math.random()*80+'%';
-      c.style.background=['#00d4ff','#ff36d6','#fff'][Math.floor(Math.random()*3)];
-      document.body.appendChild(c);
-      setTimeout(()=>c.remove(),1200);
-    }
-  }
+  renderCart();
 }
-function changeQty(id,delta){
+function changeQty(id,val){
   if(!cart[id]) cart[id]={...catalog[id],qty:0};
-  cart[id].qty=Math.max((cart[id].qty||0)+delta,0);
-  document.getElementById('qty-'+id).textContent=cart[id].qty;
+  cart[id].qty=Math.max(0,cart[id].qty+val);
+  document.getElementById(`qty-${id}`).textContent=cart[id].qty;
   if(cart[id].qty===0) delete cart[id];
   renderCart();
 }
@@ -180,10 +164,8 @@ function renderCart(){
   if(keys.length===0){list.innerHTML='<div>Корзина пуста</div>';totalEl.textContent='0 ₽';document.getElementById('payBtn').disabled=true;return;}
   let total=0;
   keys.forEach(k=>{
-    const it=cart[k];
-    total+=it.price*it.qty;
-    const row=document.createElement('div');
-    row.className='cart-item';
+    const it=cart[k];total+=it.price*it.qty;
+    const row=document.createElement('div');row.className='cart-item';
     row.innerHTML=`<div style="width:44px;height:34px;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#ff36d6);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021018">${(it.name.match(/\d+/)||['•'])[0]}</div>
     <div style="min-width:140px;margin-left:8px"><div style="font-weight:800">${it.name}</div><div style="font-size:0.9rem">${it.price} ₽ за единицу</div></div>
     <div style="margin-left:auto;font-weight:800">x${it.qty}</div>
@@ -196,10 +178,10 @@ function renderCart(){
 function goToTelegram(){
   const playerId=document.getElementById('playerId').value.trim();
   const nickname=document.getElementById('nickname').value.trim();
-  if(!playerId){alert('Введите ваш ID / ник в игре.');return;}
-  if(Object.keys(cart).length===0){alert('Добавьте товар в корзину.');return;}
+  if(!playerId){alert('Введите ID');return;}
+  if(Object.keys(cart).length===0){alert('Добавьте товар');return;}
   const orderId='ES-'+Math.random().toString(36).slice(2,8).toUpperCase();
-  let total=0,itemsText='';
+  let total=0;let itemsText='';
   Object.values(cart).forEach(it=>{itemsText+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`;total+=it.price*it.qty;});
   let msg=`🛒 Заказ ${orderId}\n🎮 ID игрока: ${playerId}\n`;
   if(nickname) msg+=`👤 Ник: ${nickname}\n`;
@@ -207,7 +189,7 @@ function goToTelegram(){
   const url=`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
 }
-renderSection('diamonds'); renderSection('vouchers'); renderPasses();
+renderSection('diamonds');renderSection('vouchers');renderPasses();
 </script>
 </body>
 </html>
