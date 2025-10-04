@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EmptyShop — Алмазы Free Fire</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at center, #090016, #000);
+  color: #fff;
+  overflow-x: hidden;
+  animation: bgPulse 10s ease-in-out infinite alternate;
+}
+@keyframes bgPulse {
+  0% { background: radial-gradient(circle at 30% 30%, #0a001f, #000); }
+  50% { background: radial-gradient(circle at 70% 70%, #130033, #000); }
+  100% { background: radial-gradient(circle at 50% 50%, #1b0044, #000); }
+}
+header {
+  text-align: center;
+  padding: 40px 20px 20px;
+  background: rgba(0,0,0,0.4);
+  box-shadow: 0 0 25px rgba(0,255,255,0.3);
+}
+header h1 {
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #00d9ff;
+  text-shadow: 0 0 15px #ff00ff, 0 0 30px #00d9ff;
+  animation: glow 3s infinite alternate;
+}
+header p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #ccc;
+  text-shadow: 0 0 5px #00ffff;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff00ff, 0 0 20px #00d9ff; }
+  to { text-shadow: 0 0 25px #ff00ff, 0 0 50px #00d9ff; }
+}
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(15, 10, 40, 0.85);
+  border-radius: 12px;
+  box-shadow: 0 0 40px rgba(0,255,255,0.2);
+}
+h2 {
+  color: #00d9ff;
+  text-shadow: 0 0 10px #00ffff;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 8px;
+}
+.product {
+  padding: 8px 0;
+  font-size: 17px;
+  border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+form {
+  margin-top: 20px;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 5px;
+  font-size: 16px;
+}
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #00bfff, #ff00cc);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: 0.3s;
+  box-shadow: 0 0 20px #ff00ff;
+}
+button:hover {
+  box-shadow: 0 0 40px #00ffff;
+  transform: scale(1.03);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>EmptyShop</h1>
+  <p>Алмазы Free Fire | Быстро. Надёжно. Дёшево.</p>
+</header>
+
+<div class="container">
+  <h2>💠 Алмазы и Ваучеры</h2>
+  <div class="product">105 алмазов — 75₽</div>
+  <div class="product">326 алмазов — 215₽</div>
+  <div class="product">546 алмазов — 355₽</div>
+  <div class="product">1113 алмазов — 705₽</div>
+  <div class="product">2398 алмазов — 1415₽</div>
+  <div class="product">6160 алмазов — 3505₽</div>
+  <div class="product">Недельный ваучер — 130₽</div>
+  <div class="product">Месячный ваучер — 670₽</div>
+
+  <h2>🚀 Пропуск прокачки (по уровням)</h2>
+  <div class="product">6 lvl — 40₽</div>
+  <div class="product">10 lvl — 60₽</div>
+  <div class="product">15 lvl — 60₽</div>
+  <div class="product">20 lvl — 60₽</div>
+  <div class="product">25 lvl — 60₽</div>
+  <div class="product">30 lvl — 85₽</div>
+
+  <h2>🧩 Заказ</h2>
+  <form id="orderForm">
+    <label>Ваш никнейм / ID в игре:</label>
+    <input type="text" id="gameID" placeholder="Введите ID или ник" required>
+
+    <label>Выберите товар:</label>
+    <select id="productSelect" required>
+      <option value="">-- Выбрать --</option>
+      <option>105 алмазов — 75₽</option>
+      <option>326 алмазов — 215₽</option>
+      <option>546 алмазов — 355₽</option>
+      <option>1113 алмазов — 705₽</option>
+      <option>2398 алмазов — 1415₽</option>
+      <option>6160 алмазов — 3505₽</option>
+      <option>Недельный ваучер — 130₽</option>
+      <option>Месячный ваучер — 670₽</option>
+      <option>Пропуск прокачки 6 lvl — 40₽</option>
+      <option>Пропуск прокачки 10 lvl — 60₽</option>
+      <option>Пропуск прокачки 15 lvl — 60₽</option>
+      <option>Пропуск прокачки 20 lvl — 60₽</option>
+      <option>Пропуск прокачки 25 lvl — 60₽</option>
+      <option>Пропуск прокачки 30 lvl — 85₽</option>
+    </select>
+
+    <button type="submit">Оплатить 💎</button>
+  </form>
+</div>
+
+<script>
+document.getElementById("orderForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  const gameID = document.getElementById("gameID").value;
+  const product = document.getElementById("productSelect").value;
+  if(!gameID || !product) return alert("Пожалуйста, заполните все поля!");
+  const text = encodeURIComponent(`💎 Заказ из EmptyShop:\nИгровой ID: ${gameID}\nТовар: ${product}`);
+  window.open(`https://t.me/SilviaEmpShop?text=${text}`, "_blank");
+});
+</script>
+
+</body>
+</html>
