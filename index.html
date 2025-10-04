@@ -143,11 +143,3 @@ function goToTelegram(){
   msg+=`\n📦 Товары:\n${itemsText}\n💰 Итого: ${total} ₽\n\n📎 Прикреплю скрин оплаты после перевода.`;
   const url=`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`;
   window.open(url,'_blank');
-}
-
-renderSection('diamonds');
-renderSection('vouchers');
-renderPasses();
-</script>
-</body>
-</html>
