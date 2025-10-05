@@ -1,145 +1,292 @@
-;--dur:15s;left:70%;top:40%;" onerror="this.style.display='none'">
-  <img src="char1.png" style="--size:80px;--dur:20s;left:20%;top:60%;" onerror="this.style.display='none'">
-  <img src="char2.png" style="--size:100px;--dur:25s;left:80%;top:30%;" onerror="this.style.display='none'">
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EmptyShop — Алмазы Free Fire</title>
+<meta name="description" content="EmptyShop — дешёвые алмазы, ваучеры и пропуски прокачки для Free Fire! Быстрая доставка и выгодные цены.">
+<style>
+:root {
+  --neon-cyan: #00d4ff;
+  --neon-magenta: #ff36d6;
+  --bg-dark: #021018;
+}
+
+/* Фон с алмазами и персонажами */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background: radial-gradient(circle at top, #042a3f, #01070c 80%);
+  overflow-x: hidden;
+}
+
+.neon-wrap {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.neon-wrap img {
+  position: absolute;
+  animation: floatMove 12s ease-in-out infinite;
+  opacity: 0.8;
+}
+@keyframes floatMove {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Баннер и заголовок */
+header {
+  text-align: center;
+  padding-top: 20px;
+}
+.banner {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+h1 {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0,212,255,0.4);
+}
+
+/* Разделы */
+.section {
+  margin: 30px auto;
+  max-width: 700px;
+  background: rgba(255,255,255,0.02);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 0 15px rgba(0,212,255,0.1);
+}
+.section h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--neon-magenta);
+}
+
+/* Сетка товаров */
+.items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+}
+.item {
+  background: rgba(255,255,255,0.03);
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,212,255,0.1);
+}
+.item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.item strong {
+  display: block;
+  margin: 6px 0;
+}
+
+/* --- Пропуски прокачки --- */
+.passes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.pass-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 8px;
+}
+.pass-row span {
+  font-weight: 700;
+  min-width: 60px;
+}
+
+/* 🌈 Кнопки */
+button,
+.add-btn,
+.buy-btn,
+.pay-btn,
+.cart-btn {
+  position: relative;
+  display: inline-block;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 10px;
+  color: #001016;
+  font-weight: 900;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, var(--neon-magenta), var(--neon-cyan), var(--neon-magenta));
+  background-size: 300%;
+  animation: flowGradient 5s linear infinite, pulseGlow 2.4s ease-in-out infinite;
+  box-shadow: 0 0 14px rgba(0,212,255,0.4), 0 0 28px rgba(255,54,214,0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+@keyframes flowGradient {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes pulseGlow {
+  0%{box-shadow:0 0 10px rgba(0,212,255,0.4),0 0 25px rgba(255,54,214,0.25)}
+  50%{box-shadow:0 0 20px rgba(0,212,255,0.7),0 0 35px rgba(255,54,214,0.45)}
+  100%{box-shadow:0 0 10px rgba(0,212,255,0.4),0 0 25px rgba(255,54,214,0.25)}
+}
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 25px rgba(0,212,255,0.8), 0 0 45px rgba(255,54,214,0.6);
+}
+button:active {
+  transform: scale(0.95);
+  opacity: 0.85;
+}
+
+/* Корзина */
+.cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,212,255,0.15);
+  border: 1px solid rgba(0,212,255,0.4);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow: 0 0 15px rgba(0,212,255,0.3);
+}
+.cart img { width: 32px; height: 32px; }
+
+/* Анимация полета в корзину */
+.fly {
+  position: fixed;
+  z-index: 1000;
+  animation: flyToCart 0.8s ease-in-out forwards;
+}
+@keyframes flyToCart {
+  to { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="neon-wrap">
+  <img src="diamond.png" style="left:10%;top:20%;width:40px;">
+  <img src="char1.png" style="right:5%;top:50%;width:100px;">
 </div>
 
-<!-- Шапка с названием магазина -->
-<header ="shop-header" style="text-align:center; margin-bottom:20px;">
-  <img src="shop-banner.png" alt="EmptyShop" style="width:100%; max-height:200px; object-fit:cover; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.6);">
-  <h1 style="margin-top:10px;">EmptyShop 💎</h1>
+<header>
+  <img src="banner.png" alt="EmptyShop" class="banner">
+  <h1>EmptyShop 💎</h1>
 </header>
 
-<div class="container">
-  <div class="id-row">
-    <input id="playerId" placeholder="Введите ваш ID / ник (обязательно)">
-    <input id="nickname" placeholder="Ник в Telegram (необязательно)">
-  </div>
+<!-- Раздел: Алмазы -->
+<section class="section">
+  <h2>Алмазы</h2>
+  <div class="items" id="diamonds"></div>
+</section>
 
-  <div class="card"><h2>Алмазы</h2><div class="grid" id="diamonds"></div></div>
-  <div class="card"><h2>Ваучеры</h2><div class="grid" id="vouchers"></div></div>
-  <div class="card passes" id="passes"><h2>Пропуск прокачки</h2></div>
+<!-- Раздел: Ваучеры -->
+<section class="section">
+  <h2>Ваучеры</h2>
+  <div class="items" id="vouchers"></div>
+</section>
 
-  <div class="card cart">
-    <h3>Корзина</h3>
-    <div class="cart-list" id="cartList"><div>Корзина пуста</div></div>
-    <div class="total"><div>Итого:</div><div id="totalSum">0 ₽</div></div>
-    <div class="checkout">
-      <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
-    </div>
-  </div>
+<!-- Раздел: Пропуск прокачки -->
+<section class="section">
+  <h2>Пропуск прокачки</h2>
+  <div class="passes" id="passes"></div>
+</section>
+
+<!-- Корзина -->
+<div class="cart" id="cart">
+  <img src="cart.png" alt="Cart">
 </div>
 
 <script>
-const TELEGRAM='SilviaEmpShop';
-const catalog={
-  p1:{name:'105 алмазов',price:75},p2:{name:'326 алмазов',price:215},p3:{name:'546 алмазов',price:355},
-  p4:{name:'1113 алмазов',price:705},p5:{name:'2398 алмазов',price:1415},p6:{name:'6160 алмазов',price:3505},
-  v1:{name:'Недельный ваучер',price:130},v2:{name:'Месячный ваучер',price:670},
-  pass6:{name:'Пропуск 6 lvl',price:40},pass10:{name:'Пропуск 10 lvl',price:60},pass15:{name:'Пропуск 15 lvl',price:60},
-  pass20:{name:'Пропуск 20 lvl',price:60},pass25:{name:'Пропуск 25 lvl',price:60},pass30:{name:'Пропуск 30 lvl',price:85}
-};
-let cart={};
+const diamonds = [
+  {id:'d100', name:'100 алмазов', price:80, img:'diamond.png'},
+  {id:'d210', name:'210 алмазов', price:160, img:'diamond.png'},
+  {id:'d560', name:'560 алмазов', price:420, img:'diamond.png'}
+];
 
-function renderSection(type){
-  const container=document.getElementById(type);
-  container.innerHTML='';
-  for(const k in catalog){
-    if(type==='diamonds' && k[0]!=='p') continue;
-    if(type==='vouchers' && k[0]!=='v') continue;
-    if(type==='diamonds'||type==='vouchers'){
-      const it=catalog[k];
-      const div=document.createElement('div');
-      div.className='product';
-      div.innerHTML=`<div class="thumb">${(it.name.match(/\d+/)||['•'])[0]}</div>
-      <div class="prod-info"><h4>${it.name}</h4></div>
-      <div class="price">${it.price} ₽</div>
-      <div class="qty-box">
-        <button onclick="changeQty('${k}',-1)">−</button>
-        <span id="qty-${k}">0</span>
-        <button onclick="changeQty('${k}',1)">+</button>
-      </div>
-      <button class="add-btn" onclick="addToCart('${k}',this)">Добавить</button>`;
-      container.appendChild(div);
-    }
-  }
+const vouchers = [
+  {id:'v10', name:'10 ваучеров', price:50, img:'voucher.png'},
+  {id:'v20', name:'20 ваучеров', price:90, img:'voucher.png'}
+];
+
+const passes = [
+  {id:'p6', name:'6 уровень', price:40},
+  {id:'p10', name:'10 уровень', price:60},
+  {id:'p15', name:'15 уровень', price:60},
+  {id:'p20', name:'20 уровень', price:60},
+  {id:'p25', name:'25 уровень', price:60},
+  {id:'p30', name:'30 уровень', price:85},
+];
+
+function renderSection(id, data) {
+  const container = document.getElementById(id);
+  container.innerHTML = '';
+  data.forEach(it => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.innerHTML = `
+      <img src="${it.img}" alt="${it.name}" onerror="this.style.display='none'">
+      <strong>${it.name}</strong>
+      <span>${it.price} ₽</span>
+      <button class="add-btn" onclick="addToCart('${it.id}', this)">Добавить</button>`;
+    container.appendChild(div);
+  });
 }
 
-function renderPasses(){
-  const container=document.getElementById('passes');
-  container.innerHTML='';
-  const passKeys=['pass6','pass10','pass15','pass20','pass25','pass30'];
-  passKeys.forEach(k=>{
-    const it=catalog[k];
+function renderPasses() {
+  const container = document.getElementById('passes');
+  container.innerHTML = '';
+  passes.forEach(p=>{
     const row=document.createElement('div');
     row.className='pass-row';
-    row.innerHTML=`<span>${it.name}</span><strong>${it.price} ₽</strong>
-    <button class="add-btn" onclick="addToCart('${k}',this)">Добавить</button>`;
+    row.innerHTML=`<span>${p.name}</span><strong>${p.price} ₽</strong>
+    <button class="add-btn" onclick="addToCart('${p.id}', this)">Добавить</button>`;
     container.appendChild(row);
   });
 }
 
-function flyToCart(btn){
-  const thumb=btn.parentElement.querySelector('.thumb');
-  if(!thumb) return;
-  const fly=document.createElement('div');
-  fly.className='fly-thumb';
-  fly.textContent=thumb.textContent;
+function addToCart(id, btn){
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  btn.textContent = 'Добавлено';
+  const fly = btn.cloneNode(true);
+  const rect = btn.getBoundingClientRect();
+  const cart = document.getElementById('cart').getBoundingClientRect();
+  fly.classList.add('fly');
+  fly.style.left = rect.left + 'px';
+  fly.style.top = rect.top + 'px';
+  fly.style.setProperty('--dx', cart.left - rect.left + 'px');
+  fly.style.setProperty('--dy', cart.top - rect.top + 'px');
   document.body.appendChild(fly);
-  const rect=thumb.getBoundingClientRect();
-  fly.style.left=rect.left+'px';
-  fly.style.top=rect.top+'px';
-  const cartRect=document.getElementById('cartList').getBoundingClientRect();
-  requestAnimationFrame(()=>{fly.style.transform=`translate(${cartRect.left-rect.left}px,${cartRect.top-rect.top}px)`;fly.style.opacity='0';});
   setTimeout(()=>fly.remove(),800);
 }
 
-function addToCart(id,btn){
-  cart[id]=cart[id]||{...catalog[id],qty:0};
-  cart[id].qty++;
-  document.getElementById(`qty-${id}`).textContent=cart[id].qty;
-  if(btn) btn.classList.add('added');
-  flyToCart(btn);
-  renderCart();
-}
+renderSection('diamonds', diamonds);
+renderSection('vouchers', vouchers);
+renderPasses();
+</script>
 
-function changeQty(id,val){
-  if(!cart[id]) cart[id]={...catalog[id],qty:0};
-  cart[id].qty=Math.max(0,cart[id].qty+val);
-  document.getElementById(`qty-${id}`).textContent=cart[id].qty;
-  if(cart[id].qty===0) delete cart[id];
-  renderCart();
-}
-
-function renderCart(){
-  const list=document.getElementById('cartList');
-  const totalEl=document.getElementById('totalSum');
-  list.innerHTML='';
-  const keys=Object.keys(cart);
-  if(keys.length===0){list.innerHTML='<div>Корзина пуста</div>';totalEl.textContent='0 ₽';document.getElementById('payBtn').disabled=true;return;}
-  let total=0;
-  keys.forEach(k=>{
-    const it=cart[k];total+=it.price*it.qty;
-    const row=document.createElement('div');row.className='cart-item';
-    row.innerHTML=`<div style="width:44px;height:34px;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#ff36d6);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021018">${(it.name.match(/\d+/)||['•'])[0]}</div>
-    <div style="min-width:140px;margin-left:8px"><div style="font-weight:800">${it.name}</div><div style="font-size:0.9rem">${it.price} ₽ за единицу</div></div>
-    <div style="margin-left:auto;font-weight:800">x${it.qty}</div>
-    <div style="margin-left:8px"><button style="background:transparent;border:none;color:#8fb6d8;cursor:pointer" onclick="changeQty('${k}',-1)">−</button></div>`;
-    list.appendChild(row);
-  });
-  totalEl.textContent=Math.round(total)+' ₽';
-  document.getElementById('payBtn').disabled=false;
-}
-
-function goToTelegram(){
-  const playerId=document.getElementById('playerId').value.trim();
-  const nickname=document.getElementById('nickname').value.trim();
-  if(!playerId){alert('Введите ID');return;}
-  if(Object.keys(cart).length===0){alert('Добавьте товар');return;}
-  const orderId='ES-'+Math.random().toString(36).slice(2,8).toUpperCase();
-  let total=0;let itemsText='';
-  Object.values(cart).forEach(it=>{itemsText+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`;total+=it.price*it.qty;});
-  let msg=`🛒 Заказ ${orderId}\n🎮 ID игрока: ${playerId}\n`;
-  if(nickname) msg+=`👤 Ник: ${nickname}\n`;
-  msg+=`\n📦 Товары:\n${itemsText}\n💰 Итого: ${total} ₽\n\n📎 Прикреплю скрин оплаты после перевода.`;
-  const url=`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`;
-  window.open(url,'_blank');
+</body>
+</html>
