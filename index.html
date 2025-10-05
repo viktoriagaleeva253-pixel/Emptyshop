@@ -4,94 +4,51 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>EmptyShop — Алмазы Free Fire</title>
-<meta name="description" content="EmptyShop — дешёвые алмазы для Free Fire! Быстрая доставка, выгодные цены и надёжность. Покупай алмазы и ваучеры прямо сейчас — прокачай свой аккаунт! 💎" />
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-  :root{
-    --neon-cyan: #00d4ff;
-    --neon-magenta: #ff36d6;
-    --bg:#05020b;
-  }
-
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    min-height:100vh;
-    font-family: 'Orbitron', Arial, sans-serif;
-    color:#eaf6ff;
-    background:var(--bg);
-    overflow-x:hidden;
-  }
-
-  .container{max-width:1100px;margin:0 auto;padding:18px;}
-
-  h1{margin:6px 0;color:var(--neon-cyan);text-shadow:0 0 12px rgba(0,212,255,0.15)}
-  .subtitle{color:#bcdff6;margin:0 0 10px 0}
-
-  .id-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center;margin:18px 0}
-  .id-row input{
-    padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);
-    background:rgba(255,255,255,0.02);color:#fff;min-width:220px;font-size:15px;
-  }
-
-  .layout{display:grid;grid-template-columns:1fr 380px;gap:18px;align-items:start}
-  @media(max-width:980px){.layout{grid-template-columns:1fr} .id-row{justify-content:flex-start}}
-
-  .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(0,0,0,0.6)}
-  .card h2{margin:0 0 10px 0;color:var(--neon-magenta)}
-
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  @media(max-width:700px){.grid{grid-template-columns:1fr}}
-
-  .product{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);position:relative}
-  .thumb{width:76px;height:56px;border-radius:8px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));display:flex;align-items:center;justify-content:center;color:#021018;font-weight:900}
-  .prod-info h4{margin:0;font-size:1rem}
-  .prod-info p{margin:4px 0 0 0;color:#d2e9ff;font-size:0.9rem}
-  .price{margin-left:auto;font-weight:900;color:var(--neon-cyan)}
-  .add-btn{margin-left:10px;padding:8px 10px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#021018;font-weight:900;cursor:pointer}
-
-  .qty-controls{display:flex;align-items:center;gap:6px;margin-left:10px}
-  .qty-controls button{padding:4px 8px;border:none;border-radius:6px;background:#ff36d6;color:#021018;font-weight:900;cursor:pointer}
-
-  .cart h3{margin-top:0;color:var(--neon-cyan)}
-  .cart-list{min-height:60px}
-  .cart-item{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01)}
-  .total{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.03);font-weight:900;margin-top:8px}
-  .checkout{display:flex;gap:8px;margin-top:12px}
-  .pay{flex:1;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#021018;font-weight:900;cursor:pointer}
-  .pay:disabled{opacity:0.5;cursor:default}
-  .note{color:#bcdff6;font-size:0.95rem;margin-top:10px}
-
-  footer{margin-top:30px;text-align:center;color:#8fb6d8;font-size:0.9rem;padding-bottom:40px}
-
-  /* Анимация летящего товара */
-  .fly-item{
-    position:absolute;
-    z-index:9999;
-    width:40px;
-    height:30px;
-    border-radius:6px;
-    background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:900;
-    color:#021018;
-    pointer-events:none;
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+:root{
+  --neon-cyan:#00d4ff;
+  --neon-magenta:#ff36d6;
+  --bg:#05020b;
+}
+body{
+  margin:0;font-family:'Orbitron',sans-serif;color:#eaf6ff;background:var(--bg);min-height:100vh;overflow-x:hidden;
+}
+.container{max-width:1100px;margin:0 auto;padding:18px;}
+h1{text-align:center;margin-bottom:0.2em;color:var(--neon-cyan);}
+.subtitle{text-align:center;margin-bottom:18px;color:#bcdff6;}
+.id-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px;}
+.id-row input{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:#fff;min-width:220px;font-size:15px;}
+.layout{display:grid;grid-template-columns:1fr 380px;gap:18px;}
+@media(max-width:980px){.layout{grid-template-columns:1fr}}
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(0,0,0,0.6);}
+.card h2{color:var(--neon-magenta);}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.product{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);position:relative;}
+.thumb{width:76px;height:56px;border-radius:8px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021018;}
+.prod-info h4{margin:0;font-size:1rem;}
+.prod-info p{margin:4px 0 0 0;color:#d2e9ff;font-size:0.9rem;}
+.price{margin-left:auto;font-weight:900;color:var(--neon-cyan);}
+.add-btn{padding:8px 10px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#021018;font-weight:900;cursor:pointer;}
+.qty-controls{display:flex;align-items:center;gap:6px;}
+.qty-controls button{padding:2px 6px;border:none;border-radius:6px;background:rgba(255,255,255,0.1);color:#fff;font-weight:900;cursor:pointer;}
+.cart h3{color:var(--neon-cyan);}
+.cart-list{min-height:60px;}
+.cart-item{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);}
+.total{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.03);font-weight:900;margin-top:8px;}
+.pay{flex:1;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#021018;font-weight:900;cursor:pointer;}
+.pay:disabled{opacity:0.5;cursor:default;}
+footer{margin-top:30px;text-align:center;color:#8fb6d8;font-size:0.9rem;padding-bottom:40px;}
+.flying{position:absolute;z-index:999;width:50px;height:35px;pointer-events:none;border-radius:6px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));display:flex;align-items:center;justify-content:center;font-weight:900;color:#021018;}
 </style>
 </head>
 <body>
 <div class="container">
-  <div class="hero">
-    <h1>EmptyShop 💎</h1>
-    <div class="subtitle">Алмазы, ваучеры и пропуски для Free Fire — быстро и выгодно</div>
-  </div>
-
+  <h1>EmptyShop 💎</h1>
+  <div class="subtitle">Введите ID игрока (обязательно) и ник Telegram (по желанию)</div>
   <div class="id-row">
-    <input id="playerId" placeholder="Введите ваш ID / ник (обязательно)" />
+    <input id="playerId" placeholder="ID игрока" />
     <input id="nickname" placeholder="Ник в Telegram (необязательно)" />
   </div>
 
@@ -99,72 +56,42 @@
     <section class="card">
       <h2>Товары</h2>
       <div class="grid" id="products">
-        <!-- Товары алмазов -->
+        <!-- Алмазы -->
         <div class="product" data-id="p1" data-name="105 алмазов" data-price="75">
           <div class="thumb">105</div>
           <div class="prod-info"><h4>105 алмазов</h4><p>Базовый набор</p></div>
           <div class="price">75 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('p1', -1)">−</button>
-            <span id="qty-p1">1</span>
-            <button onclick="changeQty('p1', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'p1')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'p1')">Добавить</button>
         </div>
         <div class="product" data-id="p2" data-name="326 алмазов" data-price="215">
           <div class="thumb">326</div>
           <div class="prod-info"><h4>326 алмазов</h4><p>Выгодный набор</p></div>
           <div class="price">215 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('p2', -1)">−</button>
-            <span id="qty-p2">1</span>
-            <button onclick="changeQty('p2', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'p2')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'p2')">Добавить</button>
         </div>
         <div class="product" data-id="p3" data-name="546 алмазов" data-price="355">
           <div class="thumb">546</div>
           <div class="prod-info"><h4>546 алмазов</h4><p>Популярный выбор</p></div>
           <div class="price">355 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('p3', -1)">−</button>
-            <span id="qty-p3">1</span>
-            <button onclick="changeQty('p3', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'p3')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'p3')">Добавить</button>
         </div>
         <div class="product" data-id="p4" data-name="1113 алмазов" data-price="705">
           <div class="thumb">1113</div>
           <div class="prod-info"><h4>1113 алмазов</h4><p>Большой пакет</p></div>
           <div class="price">705 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('p4', -1)">−</button>
-            <span id="qty-p4">1</span>
-            <button onclick="changeQty('p4', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'p4')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'p4')">Добавить</button>
         </div>
         <div class="product" data-id="p5" data-name="2398 алмазов" data-price="1415">
           <div class="thumb">2398</div>
           <div class="prod-info"><h4>2398 алмазов</h4><p>Максимальная выгода</p></div>
           <div class="price">1415 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('p5', -1)">−</button>
-            <span id="qty-p5">1</span>
-            <button onclick="changeQty('p5', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'p5')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'p5')">Добавить</button>
         </div>
         <div class="product" data-id="p6" data-name="6160 алмазов" data-price="3505">
           <div class="thumb">6160</div>
           <div class="prod-info"><h4>6160 алмазов</h4><p>Для хардкор-игроков</p></div>
           <div class="price">3505 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('p6', -1)">−</button>
-            <span id="qty-p6">1</span>
-            <button onclick="changeQty('p6', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'p6')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'p6')">Добавить</button>
         </div>
 
         <!-- Ваучеры -->
@@ -172,47 +99,51 @@
           <div class="thumb">W</div>
           <div class="prod-info"><h4>Недельный ваучер</h4><p>Короткий пакет</p></div>
           <div class="price">130 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('v1', -1)">−</button>
-            <span id="qty-v1">1</span>
-            <button onclick="changeQty('v1', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'v1')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'v1')">Добавить</button>
         </div>
         <div class="product" data-id="v2" data-name="Месячный ваучер" data-price="670">
           <div class="thumb">M</div>
           <div class="prod-info"><h4>Месячный ваучер</h4><p>Премиум-набор</p></div>
           <div class="price">670 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('v2', -1)">−</button>
-            <span id="qty-v2">1</span>
-            <button onclick="changeQty('v2', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'v2')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'v2')">Добавить</button>
         </div>
 
-        <!-- Пропуски -->
+        <!-- Пропуска прокачки -->
         <div class="product" data-id="pass6" data-name="Пропуск 6 lvl" data-price="40">
           <div class="thumb">6</div>
           <div class="prod-info"><h4>Пропуск 6 lvl</h4></div>
           <div class="price">40 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('pass6', -1)">−</button>
-            <span id="qty-pass6">1</span>
-            <button onclick="changeQty('pass6', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'pass6')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'pass6')">Добавить</button>
         </div>
         <div class="product" data-id="pass10" data-name="Пропуск 10 lvl" data-price="60">
           <div class="thumb">10</div>
           <div class="prod-info"><h4>Пропуск 10 lvl</h4></div>
           <div class="price">60 ₽</div>
-          <div class="qty-controls" style="display:none;">
-            <button onclick="changeQty('pass10', -1)">−</button>
-            <span id="qty-pass10">1</span>
-            <button onclick="changeQty('pass10', 1)">+</button>
-          </div>
-          <button class="add-btn" onclick="flyToCart(this,'pass10')">Добавить</button>
+          <button class="add-btn" onclick="addToCartInline(this,'pass10')">Добавить</button>
+        </div>
+        <div class="product" data-id="pass15" data-name="Пропуск 15 lvl" data-price="60">
+          <div class="thumb">15</div>
+          <div class="prod-info"><h4>Пропуск 15 lvl</h4></div>
+          <div class="price">60 ₽</div>
+          <button class="add-btn" onclick="addToCartInline(this,'pass15')">Добавить</button>
+        </div>
+        <div class="product" data-id="pass20" data-name="Пропуск 20 lvl" data-price="60">
+          <div class="thumb">20</div>
+          <div class="prod-info"><h4>Пропуск 20 lvl</h4></div>
+          <div class="price">60 ₽</div>
+          <button class="add-btn" onclick="addToCartInline(this,'pass20')">Добавить</button>
+        </div>
+        <div class="product" data-id="pass25" data-name="Пропуск 25 lvl" data-price="60">
+          <div class="thumb">25</div>
+          <div class="prod-info"><h4>Пропуск 25 lvl</h4></div>
+          <div class="price">60 ₽</div>
+          <button class="add-btn" onclick="addToCartInline(this,'pass25')">Добавить</button>
+        </div>
+        <div class="product" data-id="pass30" data-name="Пропуск 30 lvl" data-price="85">
+          <div class="thumb">30</div>
+          <div class="prod-info"><h4>Пропуск 30 lvl</h4></div>
+          <div class="price">85 ₽</div>
+          <button class="add-btn" onclick="addToCartInline(this,'pass30')">Добавить</button>
         </div>
       </div>
     </section>
@@ -221,98 +152,73 @@
       <h3>Корзина</h3>
       <div class="cart-list" id="cartList"><div class="muted">Корзина пуста</div></div>
       <div class="total"><div>Итого</div><div id="totalSum">0 ₽</div></div>
-      <div class="checkout">
-        <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
-      </div>
-      <div style="margin-top:10px" class="note">После оплаты пришлите в Telegram <strong>@SilviaEmpShop</strong> скрин и ваш игровой ник — выдадим алмазы.</div>
+      <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
     </aside>
   </div>
 
-  <footer>© 2025 EmptyShop — Алмазы для Free Fire · Контакт: <a href="https://t.me/SilviaEmpShop" target="_blank" style="color:var(--neon-cyan)">@SilviaEmpShop</a></footer>
+  <footer>© 2025 EmptyShop — Контакт: <a href="https://t.me/SilviaEmpShop" target="_blank" style="color:var(--neon-cyan)">@SilviaEmpShop</a></footer>
 </div>
 
 <script>
 const TELEGRAM='SilviaEmpShop';
 const catalog={
-  p1:{name:'105 алмазов', price:75}, p2:{name:'326 алмазов', price:215},
-  p3:{name:'546 алмазов', price:355}, p4:{name:'1113 алмазов', price:705},
-  p5:{name:'2398 алмазов', price:1415}, p6:{name:'6160 алмазов', price:3505},
-  v1:{name:'Недельный ваучер', price:130}, v2:{name:'Месячный ваучер', price:670},
-  pass6:{name:'Пропуск 6 lvl', price:40}, pass10:{name:'Пропуск 10 lvl', price:60}
+  p1:{name:'105 алмазов',price:75}, p2:{name:'326 алмазов',price:215},
+  p3:{name:'546 алмазов',price:355}, p4:{name:'1113 алмазов',price:705},
+  p5:{name:'2398 алмазов',price:1415}, p6:{name:'6160 алмазов',price:3505},
+  v1:{name:'Недельный ваучер',price:130}, v2:{name:'Месячный ваучер',price:670},
+  pass6:{name:'Пропуск 6 lvl',price:40}, pass10:{name:'Пропуск 10 lvl',price:60},
+  pass15:{name:'Пропуск 15 lvl',price:60}, pass20:{name:'Пропуск 20 lvl',price:60},
+  pass25:{name:'Пропуск 25 lvl',price:60}, pass30:{name:'Пропуск 30 lvl',price:85}
 };
 let cart={};
 
-function flyToCart(btn,id){
-  const rect=btn.getBoundingClientRect();
-  const cartRect=document.getElementById('cartList').getBoundingClientRect();
-  const fly=document.createElement('div');
-  fly.className='fly-item';
-  fly.textContent=catalog[id].name.match(/\d+/)||'•';
-  fly.style.left=rect.left+'px';
-  fly.style.top=rect.top+'px';
-  document.body.appendChild(fly);
-  setTimeout(()=>{
-    fly.style.transform=`translate(${cartRect.left-rect.left}px,${cartRect.top-rect.top}px) scale(0.5)`;
-    fly.style.opacity='0';
-  },10);
-  setTimeout(()=>{document.body.removeChild(fly); addToCart(id);},800);
-}
-
-function addToCart(id){
-  if(!cart[id]){
-    cart[id]={...catalog[id], qty:1};
-    const row=document.querySelector(`.product[data-id='${id}']`);
-    if(row){ row.querySelector('.qty-controls').style.display='flex'; row.querySelector('.add-btn').style.display='none'; row.querySelector(`#qty-${id}`)?.textContent=cart[id].qty; }
-  } else { cart[id].qty++; document.querySelector(`#qty-${id}`)?.textContent=cart[id].qty; }
+function addToCartInline(btn,id){
+  cart[id] = cart[id] || {...catalog[id], qty:0};
+  if(cart[id].qty===0){
+    cart[id].qty=1;
+    const qtyDiv=document.createElement('div');
+    qtyDiv.className='qty-controls';
+    qtyDiv.innerHTML=`<button onclick="decrement('${id}',this)">−</button><span id="qty-${id}">1</span><button onclick="increment('${id}',this)">+</button>`;
+    btn.replaceWith(qtyDiv);
+    animateFly(btn);
+  }
   renderCart();
 }
-
-function changeQty(id,delta){
-  if(!cart[id]) return;
-  cart[id].qty+=delta;
-  if(cart[id].qty<=0){
-    delete cart[id];
-    const row=document.querySelector(`.product[data-id='${id}']`);
-    if(row){ row.querySelector('.qty-controls').style.display='none'; row.querySelector('.add-btn').style.display='block'; }
-  } else { document.querySelector(`#qty-${id}`)?.textContent=cart[id].qty; }
-  renderCart();
-}
-
+function increment(id,el){cart[id].qty++;document.getElementById('qty-'+id).textContent=cart[id].qty;renderCart();}
+function decrement(id,el){cart[id].qty--;if(cart[id].qty<=0){delete cart[id];const parent=el.parentElement.parentElement;const btn=document.createElement('button');btn.className='add-btn';btn.textContent='Добавить';btn.setAttribute('onclick',`addToCartInline(this,'${id}')`);parent.replaceChild(btn,el.parentElement);}else{document.getElementById('qty-'+id).textContent=cart[id].qty;}renderCart();}
 function renderCart(){
   const list=document.getElementById('cartList');
   const totalEl=document.getElementById('totalSum');
   list.innerHTML='';
   const keys=Object.keys(cart);
-  if(keys.length===0){ list.innerHTML='<div class="muted">Корзина пуста</div>'; totalEl.textContent='0 ₽'; document.getElementById('payBtn').disabled=true; return; }
+  if(keys.length===0){list.innerHTML='<div class="muted">Корзина пуста</div>';totalEl.textContent='0 ₽';document.getElementById('payBtn').disabled=true;return;}
   let total=0;
-  keys.forEach(k=>{
-    const it=cart[k];
-    total+=it.price*it.qty;
-    const row=document.createElement('div');
-    row.className='cart-item';
-    row.innerHTML=`<div style="width:44px;height:34px;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#ff36d6);display:flex;align-items:center;justify-content:center;font-weight:900;color:#021018">${(it.name.match(/\d+/)||['•'])[0]}</div>
-    <div style="min-width:140px;margin-left:8px"><div style="font-weight:800">${it.name}</div><div class="muted" style="font-size:0.9rem">${it.price} ₽ за единицу</div></div>
-    <div style="margin-left:auto;font-weight:800">x${it.qty}</div>
-    <div style="margin-left:8px"><button style="background:transparent;border:none;color:#8fb6d8;cursor:pointer" onclick="changeQty('${k}',-1)">−</button></div>`;
-    list.appendChild(row);
-  });
-  totalEl.textContent=Math.round(total)+' ₽';
-  document.getElementById('payBtn').disabled=false;
+  keys.forEach(k=>{const it=cart[k];total+=it.price*it.qty;const row=document.createElement('div');row.className='cart-item';row.innerHTML=`<div>${it.name}</div><div style="margin-left:auto">${it.qty} шт</div>`;list.appendChild(row);});
+  totalEl.textContent=total+' ₽';document.getElementById('payBtn').disabled=false;
 }
-
 function goToTelegram(){
   const playerId=document.getElementById('playerId').value.trim();
   const nickname=document.getElementById('nickname').value.trim();
-  if(!playerId){ alert('Пожалуйста, введите ваш ID / ник в игре.'); return; }
-  if(Object.keys(cart).length===0){ alert('Пожалуйста, добавьте товар в корзину.'); return; }
-  const orderId='ES-'+Math.random().toString(36).slice(2,8).toUpperCase();
-  let total=0;
-  let itemsText='';
-  Object.values(cart).forEach(it=>{ itemsText+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`; total+=it.price*it.qty; });
-  let msg=`🛒 Заказ ${orderId}\n🎮 ID игрока: ${playerId}\n`;
-  if(nickname) msg+=`👤 Ник: ${nickname}\n`;
-  msg+=`\n📦 Товары:\n${itemsText}\n💰 Итого: ${total} ₽\n\n📎 Прикреплю скрин оплаты после перевода.`;
+  if(!playerId){alert('Введите ID игрока');return;}
+  if(Object.keys(cart).length===0){alert('Добавьте товар');return;}
+  let total=0,msg='🛒 Заказ\nID игрока: '+playerId+'\n';
+  if(nickname) msg+='Ник: '+nickname+'\n';
+  msg+='\nТовары:\n';
+  Object.values(cart).forEach(it=>{msg+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`;total+=it.price*it.qty;});
+  msg+='\nИтого: '+total+' ₽\nПрикреплю скрин оплаты.';
   window.open(`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+function animateFly(btn){
+  const rect=btn.getBoundingClientRect();
+  const fly=document.createElement('div');
+  fly.className='flying';
+  fly.textContent=btn.parentElement.querySelector('.thumb').textContent;
+  document.body.appendChild(fly);
+  fly.style.left=rect.left+'px';fly.style.top=rect.top+'px';
+  const cartRect=document.getElementById('cartList').getBoundingClientRect();
+  const dx=cartRect.left-rect.left;const dy=cartRect.top-rect.top;
+  fly.animate([{transform:'translate(0,0)'},{transform:`translate(${dx}px,${dy}px)`}],{duration:700,easing:'ease-in'});
+  setTimeout(()=>fly.remove(),700);
 }
 </script>
 </body>
