@@ -1,28 +1,334 @@
-doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>EmptyShop — Алмазы Free Fire</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Fire Shop</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-:root{
-  --bg:#05020b;
-  --color-almaz:#0d2540;
-  --color-voucher:#401d40;
-  --color-pass:#1d4030;
-  --neon-cyan:#00d4ff;
-  --neon-magenta:#ff36d6;
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #fff;
+  }
+
+  h1 {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 2.2rem;
+    color: #ffd700;
+    text-shadow: 1px 1px 5px #000;
+  }
+
+  .category {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+  }
+
+  .category h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    border-bottom: 3px solid;
+    padding-bottom: 10px;
+  }
+
+  #diamonds h2 { color: #00bfff; border-color: #00bfff; }
+  #vouchers h2 { color: #ff8c00; border-color: #ff8c00; }
+  #passes h2 { color: #32cd32; border-color: #32cd32; }
+
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .product {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 15px;
+    flex: 1 1 220px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+
+  .product img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+  }
+
+  .product p {
+    margin: 5px 0;
+  }
+
+  .product button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #ff9900;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: background 0.3s;
+  }
+
+  .product button:hover {
+    background: #ffaa33;
+  }
+
+  #cart {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 15px;
+  }
+
+  #cart h2 {
+    color: #ff6666;
+    border-bottom: 2px solid #ff6666;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+  }
+
+  #cart p {
+    margin: 5px 0;
+  }
+
+  .pay-section {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .pay-section input {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 15px;
+    width: 250px;
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .pay-section button {
+    padding: 12px 25px;
+    font-size: 16px;
+    background: #0088cc;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+  }
+
+  .pay-section button:hover {
+    background: #00aaff;
+  }
+
+  #payLink {
+    color: #00ffcc;
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+    font-size: 1rem;
+  }
+
+  /* Адаптивность */
+  @media(max-width: 768px) {
+    .products { flex-direction: column; align-items: center; }
+    .product { width: 90%; }
+    .pay-section input { width: 80%; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Free Fire Shop</h1>
+
+<!-- Алмазы -->
+<div class="category" id="diamonds">
+  <h2>Алмазы</h2>
+  <div class="products">
+    <div class="product">
+      <img src="diamond.png" alt="105 Алмазов">
+      <p>105 Алмазов</p>
+      <p>75 ₽</p>
+      <button onclick="addToCart('105 Алмазов',75)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="diamond.png" alt="326 Алмазов">
+      <p>326 Алмазов</p>
+      <p>215 ₽</p>
+      <button onclick="addToCart('326 Алмазов',215)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="diamond.png" alt="546 Алмазов">
+      <p>546 Алмазов</p>
+      <p>355 ₽</p>
+      <button onclick="addToCart('546 Алмазов',355)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="diamond.png" alt="1113 Алмазов">
+      <p>1113 Алмазов</p>
+      <p>705 ₽</p>
+      <button onclick="addToCart('1113 Алмазов',705)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="diamond.png" alt="2398 Алмазов">
+      <p>2398 Алмазов</p>
+      <p>1415 ₽</p>
+      <button onclick="addToCart('2398 Алмазов',1415)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="diamond.png" alt="6160 Алмазов">
+      <p>6160 Алмазов</p>
+      <p>3505 ₽</p>
+      <button onclick="addToCart('6160 Алмазов',3505)">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ваучеры -->
+<div class="category" id="vouchers">
+  <h2>Ваучеры</h2>
+  <div class="products">
+    <div class="product">
+      <img src="voucher.png" alt="Недельный ваучер">
+      <p>Недельный ваучер</p>
+      <p>130 ₽</p>
+      <button onclick="addToCart('Недельный ваучер',130)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="voucher.png" alt="Месячный ваучер">
+      <p>Месячный ваучер</p>
+      <p>670 ₽</p>
+      <button onclick="addToCart('Месячный ваучер',670)">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Пропуск прокачки -->
+<div class="category" id="passes">
+  <h2>Пропуск прокачки</h2>
+  <div class="products">
+    <div class="product">
+      <img src="pass.png" alt="6 lvl">
+      <p>6 lvl</p>
+      <p>40 ₽</p>
+      <button onclick="addToCart('Пропуск 6 lvl',40)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="pass.png" alt="10 lvl">
+      <p>10 lvl</p>
+      <p>60 ₽</p>
+      <button onclick="addToCart('Пропуск 10 lvl',60)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="pass.png" alt="15 lvl">
+      <p>15 lvl</p>
+      <p>60 ₽</p>
+      <button onclick="addToCart('Пропуск 15 lvl',60)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="pass.png" alt="20 lvl">
+      <p>20 lvl</p>
+      <p>60 ₽</p>
+      <button onclick="addToCart('Пропуск 20 lvl',60)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="pass.png" alt="25 lvl">
+      <p>25 lvl</p>
+      <p>60 ₽</p>
+      <button onclick="addToCart('Пропуск 25 lvl',60)">Добавить</button>
+    </div>
+    <div class="product">
+      <img src="pass.png" alt="30 lvl">
+      <p>30 lvl</p>
+      <p>85 ₽</p>
+      <button onclick="addToCart('Пропуск 30 lvl',85)">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Корзина -->
+<div id="cart">
+  <h2>Ваша корзина</h2>
+  <div id="cartItems">
+    <p>Корзина пуста</p>
+  </div>
+  <div class="pay-section">
+    <input type="text" id="username" placeholder="Ваш ник в игре">
+    <br>
+    <button onclick="generateTelegramLink()">
+      <img src="https://img.icons8.com/ios-filled/24/ffffff/telegram-app.png"/>
+      Отправить заказ в Telegram
+    </button>
+    <a id="payLink" href="#" target="_blank"></a>
+  </div>
+</div>
+
+<script>
+let cart = [];
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    updateCart();
 }
-body{margin:0;font-family:'Orbitron',sans-serif;color:#eaf6ff;background:var(--bg);min-height:100vh;overflow-x:hidden;}
-.container{max-width:1100px;margin:0 auto;padding:18px;}
-h1{text-align:center;color:var(--neon-cyan);}
-.id-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:18px;}
-.id-row input{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:#fff;min-width:220px;font-size:15px;}
-.layout{display:grid;grid-template-columns:1fr 380px;gap:18px;}
-@media(max-width:980px){.layout{grid-template-columns:1fr}}
-.card{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 12px 40px rgba(0,0,0,0.6);}
-h2{margin:0 0 12px 0;color:var(--neon-magenta);}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
-.product{display:flex;gap:12px
+
+function updateCart() {
+    let cartDiv = document.getElementById('cartItems');
+    cartDiv.innerHTML = '';
+    if(cart.length === 0){
+        cartDiv.innerHTML = '<p>Корзина пуста</p>';
+        document.getElementById('payLink').innerHTML = '';
+        return;
+    }
+    let total = 0;
+    cart.forEach(item => {
+        cartDiv.innerHTML += `<p>${item.name} - ${item.price} ₽</p>`;
+        total += item.price;
+    });
+    cartDiv.innerHTML += `<p><b>Итого: ${total} ₽</b></p>`;
+}
+
+function generateTelegramLink() {
+    let username = document.getElementById('username').value || "Никнейм";
+    if(cart.length === 0){
+        alert("Ваша корзина пуста!");
+        return;
+    }
+    let message = `Привет! Хочу купить:\n`;
+    let total = 0;
+    cart.forEach(item => {
+        message += `- ${item.name} - ${item.price} ₽\n`;
+        total += item.price;
+    });
+    message += `Итого: ${total} ₽\nМой ник: ${username}`;
+    
+    let telegramLink = "https://t.me/SilviaEmpShop?text=" + encodeURIComponent(message);
+    let linkElement = document.getElementById('payLink');
+    linkElement.href = telegramLink;
+    linkElement.innerHTML = "Нажмите здесь, чтобы отправить заказ в Telegram";
+}
+</script>
+
+</body>
+</html>
