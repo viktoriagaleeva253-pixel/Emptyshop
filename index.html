@@ -1,139 +1,195 @@
-section-title{margin-top:25px;}
-  .cart h3{color:var(--neon-cyan);}
-  .cart-item{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);padding:8px;border-radius:8px;margin-bottom:6px;}
-  .total{display:flex;justify-content:space-between;margin-top:8px;font-weight:900;}
-  .pay{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#000;font-weight:900;cursor:pointer;margin-top:10px;}
-  .pay:disabled{opacity:0.5;cursor:default;}
-  .note{font-size:0.9rem;color:#bcdff6;margin-top:8px;text-align:center;}
-  .muted{color:#9bbcd9;}
-  .flying{position:fixed;z-index:999;font-weight:900;pointer-events:none;}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EmptyShop — Алмазы Free Fire</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+body {margin:0;font-family:'Orbitron',sans-serif;background:#05020b;color:#eaf6ff;}
+.container{max-width:1100px;margin:0 auto;padding:20px;}
+h1{text-align:center;color:#00d4ff;margin-bottom:5px;}
+.subtitle{text-align:center;color:#bcdff6;margin-bottom:20px;}
+input{padding:10px;margin:5px;border-radius:8px;border:none;}
+.layout{display:grid;grid-template-columns:1fr 350px;gap:20px;}
+@media(max-width:900px){.layout{grid-template-columns:1fr}}
+.card{background:rgba(255,255,255,0.05);padding:15px;border-radius:12px;margin-bottom:20px;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.product{padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);display:flex;align-items:center;gap:10px;transition:0.2s;}
+.product:hover{background:rgba(255,255,255,0.03);cursor:pointer;}
+.thumb{width:60px;height:45px;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#ff36d6);display:flex;justify-content:center;align-items:center;font-weight:900;color:#021018;}
+.prod-info{flex:1;}
+.price{font-weight:900;color:#00d4ff;}
+.add-btn{padding:6px 10px;border:none;border-radius:8px;background:linear-gradient(90deg,#ff36d6,#00d4ff);color:#021018;font-weight:900;cursor:pointer;}
+.qty-controls{display:flex;gap:5px;align-items:center;margin-left:auto;}
+.qty-controls button{padding:2px 6px;background:#222;border:none;color:#fff;border-radius:5px;cursor:pointer;}
+.cart-item{display:flex;align-items:center;gap:8px;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);}
+.cart{position:sticky;top:20px;}
+.total{display:flex;justify-content:space-between;font-weight:900;margin-top:10px;}
+.pay{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#ff36d6,#00d4ff);color:#021018;font-weight:900;cursor:pointer;margin-top:10px;}
 </style>
 </head>
 <body>
 <div class="container">
-  <h1>EmptyShop 💎</h1>
-  <div class="subtitle">Алмазы, ваучеры и пропуски Free Fire — быстро и выгодно!</div>
+<h1>EmptyShop 💎</h1>
+<div class="subtitle">Введите ваш ID в игре и ник в Telegram (по желанию)</div>
+<div style="text-align:center;margin-bottom:20px;">
+<input id="playerId" placeholder="ID игрока" required>
+<input id="nickname" placeholder="Ник в Telegram (необязательно)">
+</div>
 
-  <div class="id-row">
-    <input id="playerId" placeholder="Введите ID игрока (обязательно)">
-    <input id="nickname" placeholder="Ваш ник (необязательно)">
+<div class="layout">
+<!-- Товары -->
+<section>
+  <div class="card" style="background:#1e1e1e;">
+    <h2 style="color:#00d4ff;">Алмазы</h2>
+    <div class="grid" id="productList">
+      <!-- Алмазы будут динамически добавляться -->
+    </div>
   </div>
 
-  <div class="layout">
-    <section class="card">
-      <h2 style="color:#00d4ff;">💎 Алмазы</h2>
-      <div class="grid">
-        <div class="product" data-id="p1"><div class="thumb" style="background:#00d4ff;">105</div><div class="prod-info"><h4>105 алмазов</h4></div><div class="price">75 ₽</div><button class="add-btn" onclick="addToCartInline(this,'p1')">Добавить</button></div>
-        <div class="product" data-id="p2"><div class="thumb" style="background:#00d4ff;">210</div><div class="prod-info"><h4>210 алмазов</h4></div><div class="price">140 ₽</div><button class="add-btn" onclick="addToCartInline(this,'p2')">Добавить</button></div>
-        <div class="product" data-id="p3"><div class="thumb" style="background:#00d4ff;">530</div><div class="prod-info"><h4>530 алмазов</h4></div><div class="price">330 ₽</div><button class="add-btn" onclick="addToCartInline(this,'p3')">Добавить</button></div>
-        <div class="product" data-id="p4"><div class="thumb" style="background:#00d4ff;">1080</div><div class="prod-info"><h4>1080 алмазов</h4></div><div class="price">650 ₽</div><button class="add-btn" onclick="addToCartInline(this,'p4')">Добавить</button></div>
-      </div>
-
-      <h2 class="section-title" style="color:#ff36d6;">🎫 Ваучеры</h2>
-      <div class="grid">
-        <div class="product" data-id="v1"><div class="thumb" style="background:#ff36d6;">W</div><div class="prod-info"><h4>Недельный ваучер</h4></div><div class="price">130 ₽</div><button class="add-btn" onclick="addToCartInline(this,'v1')">Добавить</button></div>
-        <div class="product" data-id="v2"><div class="thumb" style="background:#ff36d6;">M</div><div class="prod-info"><h4>Месячный ваучер</h4></div><div class="price">670 ₽</div><button class="add-btn" onclick="addToCartInline(this,'v2')">Добавить</button></div>
-      </div>
-
-      <h2 class="section-title" style="color:#fff542;">⚡ Пропуски прокачки</h2>
-      <div class="grid">
-        <div class="product" data-id="pass6"><div class="thumb" style="background:#fff542;">6</div><div class="prod-info"><h4>Пропуск 6 lvl</h4></div><div class="price">40 ₽</div><button class="add-btn" onclick="addToCartInline(this,'pass6')">Добавить</button></div>
-        <div class="product" data-id="pass10"><div class="thumb" style="background:#fff542;">10</div><div class="prod-info"><h4>Пропуск 10 lvl</h4></div><div class="price">60 ₽</div><button class="add-btn" onclick="addToCartInline(this,'pass10')">Добавить</button></div>
-      </div>
-    </section>
-
-    <aside class="card cart">
-      <h3>🛒 Корзина</h3>
-      <div id="cartList"><div class="muted">Корзина пуста</div></div>
-      <div class="total"><div>Итого</div><div id="totalSum">0 ₽</div></div>
-      <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить в Telegram</button>
-      <div class="note">После оплаты пришлите скрин в Telegram <b>@SilviaEmpShop</b></div>
-    </aside>
+  <div class="card" style="background:#1a1a2e;">
+    <h2 style="color:#ff36d6;">Ваучеры</h2>
+    <div class="grid" id="voucherList">
+      <!-- Ваучеры -->
+    </div>
   </div>
+
+  <div class="card" style="background:#1a2e1a;">
+    <h2 style="color:#00ff99;">Пропуск прокачки</h2>
+    <div class="grid" id="passList">
+      <!-- Пропуски -->
+    </div>
+  </div>
+</section>
+
+<!-- Корзина -->
+<aside class="card cart">
+<h3>Корзина</h3>
+<div id="cartList"><div>Корзина пуста</div></div>
+<div class="total">Итого: <span id="totalSum">0 ₽</span></div>
+<button class="pay" onclick="goToTelegram()" id="payBtn" disabled>Оплатить — Telegram</button>
+</aside>
+</div>
 </div>
 
 <script>
-const TELEGRAM='SilviaEmpShop';
-const catalog={
-  p1:{name:'105 алмазов',price:75},p2:{name:'210 алмазов',price:140},p3:{name:'530 алмазов',price:330},p4:{name:'1080 алмазов',price:650},
-  v1:{name:'Недельный ваучер',price:130},v2:{name:'Месячный ваучер',price:670},
-  pass6:{name:'Пропуск 6 lvl',price:40},pass10:{name:'Пропуск 10 lvl',price:60}
+// Продукты
+const catalog = {
+  p1:{name:'105 алмазов', price:75,type:'diamond'},
+  p2:{name:'326 алмазов', price:215,type:'diamond'},
+  p3:{name:'546 алмазов', price:355,type:'diamond'},
+  p4:{name:'1113 алмазов', price:705,type:'diamond'},
+  p5:{name:'2398 алмазов', price:1415,type:'diamond'},
+  p6:{name:'6160 алмазов', price:3505,type:'diamond'},
+  v1:{name:'Недельный ваучер', price:130,type:'voucher'},
+  v2:{name:'Месячный ваучер', price:670,type:'voucher'},
+  pass6:{name:'6 lvl', price:40,type:'pass'},
+  pass10:{name:'10 lvl', price:60,type:'pass'},
+  pass15:{name:'15 lvl', price:60,type:'pass'},
+  pass20:{name:'20 lvl', price:60,type:'pass'},
+  pass25:{name:'25 lvl', price:60,type:'pass'},
+  pass30:{name:'30 lvl', price:85,type:'pass'}
 };
-let cart={};
 
+let cart = {};
+
+// Функция добавления
+function addToCart(id){
+  if(!cart[id]) cart[id] = {...catalog[id], qty:0};
+  cart[id].qty++;
+  renderCart();
+  updateProductQtyUI(id);
+}
+
+// Уменьшение
+function decQty(id){
+  if(!cart[id]) return;
+  cart[id].qty--;
+  if(cart[id].qty<=0) delete cart[id];
+  renderCart();
+  updateProductQtyUI(id);
+}
+
+// Обновление отображения количества на кнопке
+function updateProductQtyUI(id){
+  const el = document.querySelector(`[data-id="${id}"] .qtySpan`);
+  if(el) el.textContent = cart[id]?cart[id].qty:0;
+}
+
+// Рендер корзины
 function renderCart(){
-  const list=document.getElementById('cartList');
-  list.innerHTML='';
-  if(Object.keys(cart).length===0){
-    list.innerHTML='<div class="muted">Корзина пуста</div>';
-    document.getElementById('totalSum').textContent='0 ₽';
+  const list = document.getElementById('cartList');
+  const totalEl = document.getElementById('totalSum');
+  list.innerHTML = '';
+  const keys = Object.keys(cart);
+  if(keys.length===0){
+    list.innerHTML='<div>Корзина пуста</div>';
+    totalEl.textContent='0 ₽';
     document.getElementById('payBtn').disabled=true;
     return;
   }
   let total=0;
-  for(const id in cart){
-    const it=cart[id]; total+=it.price*it.qty;
-    const row=document.createElement('div');
-    row.className='cart-item';
-    row.innerHTML=`<div style="width:40px;height:32px;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#ff36d6);display:flex;align-items:center;justify-content:center;font-weight:900;color:#000">${(it.name.match(/\\d+/)||['•'])[0]}</div>
-    <div style="flex:1">${it.name}</div>
-    <div class="qty-controls">
-      <button onclick="decrement('${id}')">−</button>
-      <span id="cartqty-${id}">${it.qty}</span>
-      <button onclick="increment('${id}')">+</button>
-    </div>
-    <div style="width:60px;text-align:right;">${it.price*it.qty} ₽</div>`;
-    list.appendChild(row);
-  }
-  document.getElementById('totalSum').textContent=total+' ₽';
+  keys.forEach(k=>{
+    const it=cart[k];
+    total+=it.price*it.qty;
+    const div=document.createElement('div');
+    div.className='cart-item';
+    div.innerHTML=`<div>${it.name}</div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:5px;">
+      <button onclick="decQty('${k}')">−</button>
+      <span>${it.qty}</span>
+      <button onclick="addToCart('${k}')">+</button>
+      </div>
+      <div style="margin-left:10px;">${it.price*it.qty} ₽</div>`;
+    list.appendChild(div);
+  });
+  totalEl.textContent=total+' ₽';
   document.getElementById('payBtn').disabled=false;
 }
 
-function addToCartInline(btn,id){
-  cart[id]=cart[id]||{...catalog[id],qty:0};
-  cart[id].qty++;
-  if(!btn.nextElementSibling || !btn.nextElementSibling.classList.contains('qty-controls')){
-    const qtyDiv=document.createElement('div');
-    qtyDiv.className='qty-controls';
-    qtyDiv.innerHTML=`<button onclick="decrement('${id}')">−</button><span id="qty-${id}">${cart[id].qty}</span><button onclick="increment('${id}')">+</button>`;
-    btn.replaceWith(qtyDiv);
-  } else { document.getElementById('qty-'+id).textContent=cart[id].qty; }
-  renderCart();
-  animateFly(btn);
-}
-
-function increment(id){cart[id].qty++;updateQty(id);}
-function decrement(id){if(cart[id].qty>1){cart[id].qty--;}else{delete cart[id];}updateQty(id);}
-function updateQty(id){if(document.getElementById('qty-'+id))document.getElementById('qty-'+id').textContent=cart[id]?.qty||0;if(document.getElementById('cartqty-'+id))document.getElementById('cartqty-'+id').textContent=cart[id]?.qty||0;renderCart();}
-
+// Телеграм
 function goToTelegram(){
-  const id=document.getElementById('playerId').value.trim();
-  if(!id){alert('Введите ID игрока!');return;}
-  if(Object.keys(cart).length===0){alert('Добавьте товары.');return;}
-  const nick=document.getElementById('nickname').value.trim();
-  let text=`🎮 ID игрока: ${id}\n`;
-  if(nick)text+=`👤 Ник: ${nick}\n`;
-  text+=`\n📦 Товары:\n`;
+  const playerId=document.getElementById('playerId').value.trim();
+  const nickname=document.getElementById('nickname').value.trim();
+  if(!playerId){alert('Введите ID игрока');return;}
+  if(Object.keys(cart).length===0){alert('Корзина пуста');return;}
+  let msg=`Заказ\nID игрока: ${playerId}\n`;
+  if(nickname) msg+=`Ник: ${nickname}\n`;
+  msg+='Товары:\n';
   let total=0;
-  for(const k in cart){const it=cart[k];text+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`;total+=it.price*it.qty;}
-  text+=`\n💰 Итого: ${total} ₽`;
-  window.open(`https://t.me/${TELEGRAM}?text=${encodeURIComponent(text)}`,'_blank');
+  Object.values(cart).forEach(it=>{
+    msg+=`${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`;
+    total+=it.price*it.qty;
+  });
+  msg+=`Итого: ${total} ₽`;
+  window.open(`https://t.me/SilviaEmpShop?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
-// Анимация "летящий товар"
-function animateFly(btn){
-  const rect=btn.getBoundingClientRect();
-  const fly=document.createElement('div');
-  fly.className='flying';
-  fly.textContent='💎';
-  fly.style.left=rect.left+'px';
-  fly.style.top=rect.top+'px';
-  document.body.appendChild(fly);
-  const cart=document.querySelector('.cart').getBoundingClientRect();
-  const dx=cart.left-rect.left+50,dy=cart.top-rect.top+50;
-  fly.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${dx}px,${dy}px) scale(0.2)`}],{duration:700,easing:'ease-in-out'});
-  setTimeout(()=>fly.remove(),700);
+// Добавление товаров в DOM
+function createProductDOM(product,id){
+  const div=document.createElement('div');
+  div.className='product';
+  div.dataset.id=id;
+  div.innerHTML=`<div class="thumb">${product.type==='diamond'?'💎':product.type==='voucher'?'🎟️':'🏆'}</div>
+  <div class="prod-info"><strong>${product.name}</strong><br>${product.price} ₽</div>
+  <div class="qty-controls">
+    <button onclick="decQty('${id}')">−</button>
+    <span class="qtySpan">0</span>
+    <button onclick="addToCart('${id}')">+</button>
+  </div>`;
+  return div;
+}
+
+// Рендер всех категорий
+for(const id in catalog){
+  const p=catalog[id];
+  const el=createProductDOM(p,id);
+  if(p.type==='diamond') document.getElementById('productList').appendChild(el);
+  else if(p.type==='voucher') document.getElementById('voucherList').appendChild(el);
+  else if(p.type==='pass') document.getElementById('passList').appendChild(el);
 }
 </script>
 </body>
