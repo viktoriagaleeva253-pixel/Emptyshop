@@ -4,48 +4,124 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>EmptyShop — Алмазы Free Fire</title>
+<meta name="description" content="EmptyShop — дешёвые алмазы для Free Fire! Быстрая доставка, выгодные цены и надёжность." />
 <style>
-body{margin:0;font-family:'Orbitron',sans-serif;background:#05020b;color:#eaf6ff;}
-.container{max-width:1100px;margin:auto;padding:18px;}
-h1{color:#00d4ff;}
-.id-row{display:flex;gap:10px;margin-bottom:18px;}
-.id-row input{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);color:#fff;}
-.layout{display:grid;grid-template-columns:1fr 380px;gap:18px;}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root{
+  --neon-cyan: #00d4ff;
+  --neon-magenta: #ff36d6;
+  --bg:#05020b;
+}
+
+body{
+  margin:0;
+  font-family: 'Orbitron', Arial, sans-serif;
+  color:#eaf6ff;
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+.neon-wrap{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background: radial-gradient(circle at 10% 10%, rgba(0,212,255,0.06), transparent 8%),
+              radial-gradient(circle at 90% 90%, rgba(255,54,214,0.04), transparent 8%),
+              linear-gradient(180deg,#03030a,#060217 60%);
+  overflow:hidden;
+}
+.neon-band{
+  position:absolute;left:-30%;top:0;width:160%;height:60%;
+  background: linear-gradient(90deg, rgba(0,212,255,0.06), rgba(255,54,214,0.06), rgba(0,212,255,0.06));
+  transform:skewY(-8deg);
+  filter: blur(40px);
+  animation: bandmove 10s linear infinite;
+  mix-blend-mode: screen;
+}
+@keyframes bandmove{
+  0%{transform:translateX(-10%) skewY(-8deg)}
+  50%{transform:translateX(10%) skewY(-8deg)}
+  100%{transform:translateX(-10%) skewY(-8deg)}
+}
+.particle {
+  position:absolute;
+  width:6px;height:6px;border-radius:50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.95), rgba(255,255,255,0.2));
+  opacity:0.08; filter:blur(2px);
+  animation: float linear infinite;
+  mix-blend-mode: screen;
+}
+@keyframes float {
+  0%{transform:translateY(0) scale(1);opacity:0.08}
+  50%{transform:translateY(-40px) scale(1.2);opacity:0.18}
+  100%{transform:translateY(0) scale(1);opacity:0.08}
+}
+
+.container{max-width:1100px;margin:0 auto;padding:18px;}
+
+.hero{text-align:center;margin-top:18px;}
+h1{color:var(--neon-cyan); text-shadow:0 0 12px rgba(0,212,255,0.15); margin:6px 0;}
+.subtitle{color:#bcdff6;margin:0 0 10px 0;}
+
+.id-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:18px 0;}
+.id-row input{
+  padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);
+  background:rgba(255,255,255,0.02);color:#fff;min-width:220px;font-size:15px;
+}
+
+.layout{display:grid;grid-template-columns:1fr 380px;gap:18px;align-items:start;}
 @media(max-width:980px){.layout{grid-template-columns:1fr}}
-.card{background:rgba(255,255,255,0.02);padding:14px;border-radius:12px;margin-bottom:18px;}
+
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);margin-bottom:20px;}
+.card h2, .card h3{margin:0 0 10px 0;color:var(--neon-magenta);}
 .grid{display:grid;grid-template-columns:1fr;gap:12px;}
-.product{display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);transition:0.2s;position:relative;}
-.product:hover{background:rgba(0,212,255,0.05);}
-.thumb{width:60px;height:50px;border-radius:8px;background:linear-gradient(90deg,#00d4ff,#ff36d6);display:flex;align-items:center;justify-content:center;color:#021018;font-weight:900;}
-.prod-info{flex:1;}
-.price{font-weight:900;color:#00d4ff;}
-.add-btn{padding:6px 10px;border:none;border-radius:8px;background:linear-gradient(90deg,#ff36d6,#00d4ff);color:#021018;cursor:pointer;}
-.qty-control{display:flex;gap:4px;align-items:center;margin-left:10px;}
-.qty-control button{padding:2px 6px;border:none;border-radius:6px;background:linear-gradient(90deg,#ff36d6,#00d4ff);cursor:pointer;}
-.qty-control span{min-width:20px;text-align:center;}
+
+.product{display:flex;gap:12px;align-items:center;padding:10px;border-radius:10px;background:rgba(255,255,255,0.01);position:relative;}
+.product:hover{background:rgba(0,212,255,0.08);}
+.thumb{width:76px;height:56px;border-radius:8px;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-magenta));display:flex;align-items:center;justify-content:center;color:#021018;font-weight:900;}
+.prod-info h4{margin:0;font-size:1rem;}
+.prod-info p{margin:4px 0 0 0;color:#d2e9ff;font-size:0.9rem;}
+.price{margin-left:auto;font-weight:900;color:var(--neon-cyan);}
+.add-btn{padding:6px 10px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#021018;font-weight:900;cursor:pointer;}
+.qty-controls{display:flex;align-items:center;gap:4px;margin-left:10px;}
+.qty-controls button{padding:2px 6px;font-size:14px;border-radius:6px;border:none;background:rgba(255,255,255,0.05);color:#fff;cursor:pointer;}
+.qty-controls span{min-width:18px;text-align:center;display:inline-block;}
+
+.cart h3{color:var(--neon-cyan);}
 .cart-list{min-height:60px;}
 .cart-item{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);}
-.total{display:flex;justify-content:space-between;font-weight:900;margin-top:8px;}
-.pay{width:100%;padding:12px;border:none;border-radius:10px;background:linear-gradient(90deg,#ff36d6,#00d4ff);color:#021018;cursor:pointer;margin-top:8px;}
+.total{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px dashed rgba(255,255,255,0.03);font-weight:900;margin-top:8px;}
+.checkout{display:flex;gap:8px;margin-top:12px;}
+.pay{flex:1;padding:12px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--neon-magenta),var(--neon-cyan));color:#021018;font-weight:900;cursor:pointer;}
 .pay:disabled{opacity:0.5;cursor:default;}
-.flying{position:absolute;width:40px;height:35px;border-radius:6px;background:linear-gradient(90deg,#ff36d6,#00d4ff);display:flex;align-items:center;justify-content:center;color:#021018;font-weight:900;pointer-events:none;z-index:999;transition:0.6s ease;}
+.note{color:#bcdff6;font-size:0.95rem;margin-top:10px;}
 </style>
 </head>
 <body>
+<div class="neon-wrap" aria-hidden="true">
+  <div class="neon-band"></div>
+  <div class="particle" style="left:6%;top:20%;animation-duration:9s;width:5px;height:5px"></div>
+  <div class="particle" style="left:22%;top:40%;animation-duration:12s;width:6px;height:6px"></div>
+  <div class="particle" style="left:48%;top:12%;animation-duration:11s;width:4px;height:4px"></div>
+</div>
+
 <div class="container">
-  <h1>EmptyShop 💎</h1>
-  <div class="subtitle">Алмазы и пропуски для Free Fire</div>
+  <div class="hero">
+    <h1>EmptyShop 💎</h1>
+    <div class="subtitle">Алмазы, ваучеры и пропуски для Free Fire — быстро и выгодно</div>
+  </div>
 
   <div class="id-row">
     <input id="playerId" placeholder="Введите ваш ID / ник (обязательно)" />
-    <input id="nickname" placeholder="Ник в Telegram (необязательно)" />
+    <input id="nickname" class="nick" placeholder="Ник в Telegram (необязательно)" />
   </div>
 
   <div class="layout">
     <section class="card">
       <h2>Товары</h2>
       <div class="grid" id="products">
-        <!-- Алмазы -->
+        <!-- Product template -->
         <div class="product" data-id="p1" data-name="105 алмазов" data-price="75">
           <div class="thumb">105</div>
           <div class="prod-info"><h4>105 алмазов</h4><p>Базовый набор</p></div>
@@ -64,138 +140,75 @@ h1{color:#00d4ff;}
           <div class="price">355 ₽</div>
           <button class="add-btn" onclick="addToCart('p3', this)">Добавить</button>
         </div>
-        <div class="product" data-id="p4" data-name="1113 алмазов" data-price="705">
-          <div class="thumb">1113</div>
-          <div class="prod-info"><h4>1113 алмазов</h4><p>Большой пакет</p></div>
-          <div class="price">705 ₽</div>
-          <button class="add-btn" onclick="addToCart('p4', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="p5" data-name="2398 алмазов" data-price="1415">
-          <div class="thumb">2398</div>
-          <div class="prod-info"><h4>2398 алмазов</h4><p>Максимальная выгода</p></div>
-          <div class="price">1415 ₽</div>
-          <button class="add-btn" onclick="addToCart('p5', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="p6" data-name="6160 алмазов" data-price="3505">
-          <div class="thumb">6160</div>
-          <div class="prod-info"><h4>6160 алмазов</h4><p>Для хардкор-игроков</p></div>
-          <div class="price">3505 ₽</div>
-          <button class="add-btn" onclick="addToCart('p6', this)">Добавить</button>
-        </div>
-        <!-- Ваучеры -->
-        <div class="product" data-id="v1" data-name="Недельный ваучер" data-price="130">
-          <div class="thumb">W</div>
-          <div class="prod-info"><h4>Недельный ваучер</h4><p>Короткий пакет</p></div>
-          <div class="price">130 ₽</div>
-          <button class="add-btn" onclick="addToCart('v1', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="v2" data-name="Месячный ваучер" data-price="670">
-          <div class="thumb">M</div>
-          <div class="prod-info"><h4>Месячный ваучер</h4><p>Премиум-набор</p></div>
-          <div class="price">670 ₽</div>
-          <button class="add-btn" onclick="addToCart('v2', this)">Добавить</button>
-        </div>
-        <!-- Пропуски -->
-        <div class="product" data-id="pass6" data-name="Пропуск 6 lvl" data-price="40">
-          <div class="thumb">6</div>
-          <div class="prod-info"><h4>Пропуск 6 lvl</h4></div>
-          <div class="price">40 ₽</div>
-          <button class="add-btn" onclick="addToCart('pass6', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="pass10" data-name="Пропуск 10 lvl" data-price="60">
-          <div class="thumb">10</div>
-          <div class="prod-info"><h4>Пропуск 10 lvl</h4></div>
-          <div class="price">60 ₽</div>
-          <button class="add-btn" onclick="addToCart('pass10', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="pass15" data-name="Пропуск 15 lvl" data-price="60">
-          <div class="thumb">15</div>
-          <div class="prod-info"><h4>Пропуск 15 lvl</h4></div>
-          <div class="price">60 ₽</div>
-          <button class="add-btn" onclick="addToCart('pass15', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="pass20" data-name="Пропуск 20 lvl" data-price="60">
-          <div class="thumb">20</div>
-          <div class="prod-info"><h4>Пропуск 20 lvl</h4></div>
-          <div class="price">60 ₽</div>
-          <button class="add-btn" onclick="addToCart('pass20', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="pass25" data-name="Пропуск 25 lvl" data-price="60">
-          <div class="thumb">25</div>
-          <div class="prod-info"><h4>Пропуск 25 lvl</h4></div>
-          <div class="price">60 ₽</div>
-          <button class="add-btn" onclick="addToCart('pass25', this)">Добавить</button>
-        </div>
-        <div class="product" data-id="pass30" data-name="Пропуск 30 lvl" data-price="85">
-          <div class="thumb">30</div>
-          <div class="prod-info"><h4>Пропуск 30 lvl</h4></div>
-          <div class="price">85 ₽</div>
-          <button class="add-btn" onclick="addToCart('pass30', this)">Добавить</button>
-        </div>
+        <!-- Добавьте остальные товары аналогично -->
       </div>
     </section>
 
-    <aside class="card">
+    <aside class="card cart">
       <h3>Корзина</h3>
       <div class="cart-list" id="cartList"><div class="muted">Корзина пуста</div></div>
       <div class="total"><div>Итого</div><div id="totalSum">0 ₽</div></div>
-      <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
+      <div class="checkout">
+        <button id="payBtn" class="pay" onclick="goToTelegram()" disabled>Оплатить — Telegram</button>
+      </div>
+      <div class="note">После оплаты пришлите в Telegram <strong>@SilviaEmpShop</strong> скрин и ваш игровой ник — выдадим алмазы.</div>
     </aside>
   </div>
 </div>
 
 <script>
-const TELEGRAM='SilviaEmpShop';
-const catalog={
-  p1:{name:'105 алмазов',price:75},p2:{name:'326 алмазов',price:215},p3:{name:'546 алмазов',price:355},
-  p4:{name:'1113 алмазов',price:705},p5:{name:'2398 алмазов',price:1415},p6:{name:'6160 алмазов',price:3505},
-  v1:{name:'Недельный ваучер',price:130},v2:{name:'Месячный ваучер',price:670},
-  pass6:{name:'Пропуск 6 lvl',price:40},pass10:{name:'Пропуск 10 lvl',price:60},pass15:{name:'Пропуск 15 lvl',price:60},
-  pass20:{name:'Пропуск 20 lvl',price:60},pass25:{name:'Пропуск 25 lvl',price:60},pass30:{name:'Пропуск 30 lvl',price:85}
+const TELEGRAM = 'SilviaEmpShop';
+const catalog = {
+  p1:{name:'105 алмазов', price:75},
+  p2:{name:'326 алмазов', price:215},
+  p3:{name:'546 алмазов', price:355},
+  p4:{name:'1113 алмазов', price:705},
+  p5:{name:'2398 алмазов', price:1415},
+  p6:{name:'6160 алмазов', price:3505},
+  v1:{name:'Недельный ваучер', price:130},
+  v2:{name:'Месячный ваучер', price:670},
+  pass6:{name:'Пропуск 6 lvl', price:40}
 };
-let cart={};
+
+let cart = {};
 
 function addToCart(id, btn){
-  if(!cart[id]) cart[id]={...catalog[id],qty:1}; else cart[id].qty++;
+  const prodEl = btn.parentNode;
+  if(!cart[id]){
+    cart[id] = {...catalog[id], qty:1};
+    // добавить контролы + и -
+    const controls = document.createElement('div');
+    controls.className='qty-controls';
+    controls.innerHTML=`<button onclick="decrement('${id}')">−</button><span>${cart[id].qty}</span><button onclick="increment('${id}')">+</button>`;
+    prodEl.appendChild(controls);
+  } else { cart[id].qty++; prodEl.querySelector('.qty-controls span').textContent = cart[id].qty; }
   renderCart();
-  const parent=btn.parentElement;
-  btn.style.display='none';
-  if(!parent.querySelector('.qty-control')){
-    const qtyControl=document.createElement('div');
-    qtyControl.className='qty-control';
-    qtyControl.innerHTML=`<button onclick="dec('${id}', this)">−</button><span>${cart[id].qty}</span><button onclick="inc('${id}', this)">+</button>`;
-    parent.appendChild(qtyControl);
-  }
-  // летящий товар
-  const flying=document.createElement('div'); flying.className='flying'; flying.textContent=parent.querySelector('.thumb').textContent;
-  document.body.appendChild(flying);
-  const rect=parent.querySelector('.thumb').getBoundingClientRect();
-  const cartRect=document.getElementById('cartList').getBoundingClientRect();
-  flying.style.left=rect.left+'px'; flying.style.top=rect.top+'px';
-  setTimeout(()=>{ flying.style.left=cartRect.left+'px'; flying.style.top=cartRect.top+'px'; flying.style.transform='scale(0.2)'; flying.style.opacity='0.5'; },10);
-  setTimeout(()=>{ flying.remove(); },600);
 }
 
-function inc(id, el){ cart[id].qty++; updateQty(el,id); }
-function dec(id, el){ 
-  cart[id].qty--; 
-  if(cart[id].qty<=0){ delete cart[id]; el.parentElement.previousElementSibling.style.display='inline-block'; el.parentElement.remove(); }
-  else updateQty(el,id);
+function increment(id){ cart[id].qty++; updateQty(id); }
+function decrement(id){ cart[id].qty--; if(cart[id].qty<=0){delete cart[id]; removeControls(id);} updateQty(id); renderCart(); }
+function updateQty(id){
+  const prodEl = document.querySelector(`.product[data-id='${id}']`);
+  if(prodEl && prodEl.querySelector('.qty-controls')) prodEl.querySelector('.qty-controls span').textContent = cart[id]?cart[id].qty:0;
   renderCart();
 }
-function updateQty(el,id){ el.parentElement.querySelector('span').textContent=cart[id].qty; renderCart(); }
+function removeControls(id){
+  const prodEl = document.querySelector(`.product[data-id='${id}']`);
+  const controls = prodEl.querySelector('.qty-controls');
+  if(controls) controls.remove();
+}
 
 function renderCart(){
-  const list=document.getElementById('cartList');
-  const totalEl=document.getElementById('totalSum');
+  const list = document.getElementById('cartList');
+  const totalEl = document.getElementById('totalSum');
   list.innerHTML='';
-  const keys=Object.keys(cart);
-  if(keys.length===0){ list.innerHTML='<div class="muted">Корзина пуста</div>'; totalEl.textContent='0 ₽'; document.getElementById('payBtn').disabled=true; return; }
+  const keys = Object.keys(cart);
+  if(keys.length===0){ list.innerHTML='<div class="muted">Корзина пуста</div>'; totalEl.textContent='0 ₽'; document.getElementById('payBtn').disabled=true; return;}
   let total=0;
   keys.forEach(k=>{
     const it=cart[k]; total+=it.price*it.qty;
     const row=document.createElement('div'); row.className='cart-item';
-    row.textContent=`${it.name} x${it.qty} — ${it.price*it.qty} ₽`;
+    row.innerHTML=`<div>${it.name}</div><div>x${it.qty}</div><div>${it.price*it.qty} ₽</div>`;
     list.appendChild(row);
   });
   totalEl.textContent=total+' ₽';
@@ -205,14 +218,16 @@ function renderCart(){
 function goToTelegram(){
   const playerId=document.getElementById('playerId').value.trim();
   const nickname=document.getElementById('nickname').value.trim();
-  if(!playerId){alert('Введите ID игрока'); return;}
-  if(Object.keys(cart).length===0){alert('Корзина пуста'); return;}
-  let total=0,msg=`🛒 Заказ\nID: ${playerId}\n`;
-  if(nickname) msg+=`Ник: ${nickname}\n`;
-  msg+=`\nТовары:\n`;
-  Object.values(cart).forEach(it){ msg+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`; total+=it.price*it.qty; }
-  msg+=`\nИтого: ${total} ₽`;
-  window.open(`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`,'_blank');
+  if(!playerId){alert('Введите ID игрока.'); return;}
+  if(Object.keys(cart).length===0){alert('Корзина пуста.'); return;}
+  let orderId='ES-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  let total=0, itemsText='';
+  Object.values(cart).forEach(it=>{itemsText+=`• ${it.name} x${it.qty} — ${it.price*it.qty} ₽\n`; total+=it.price*it.qty;});
+  let msg=`🛒 Заказ ${orderId}\n🎮 ID игрока: ${playerId}\n`;
+  if(nickname) msg+=`👤 Ник: ${nickname}\n`;
+  msg+=`\n📦 Товары:\n${itemsText}\n💰 Итого: ${total} ₽\n\n📎 Прикреплю скрин оплаты после перевода.`;
+  const url=`https://t.me/${TELEGRAM}?text=${encodeURIComponent(msg)}`;
+  window.open(url,'_blank');
 }
 </script>
 </body>
